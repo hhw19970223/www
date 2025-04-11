@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { LocaleSwitcher } from "./locale-switcher";
 import { ContainerDropdown } from "@/components/dropdown/ContainerDropdown";
 import { ISvgDown } from "@/components/svg/ISvgDown";
+import { cn } from "@/utils/cn";
 
 type Props = LocaleProp & {
   menuData: Menu[];
@@ -73,29 +74,25 @@ export function Header({ menuData, locale }: Props) {
                   onClick={navbarToggleHandler}
                   id="navbarToggler"
                   aria-label="Mobile Menu"
-                  className="absolute right-4 top-1/2 block translate-y-[-50%] rounded-lg px-3 py-[6px] ring-primary focus:ring-2 lg:hidden"
+                  className="absolute right-4 top-1/2 block translate-y-[-50%] rounded-lg px-3 py-[6px] group lg:hidden hover:opacity-80"
                 >
                   <span
-                    className={`relative my-1.5 block h-0.5 w-[30px] bg-black transition-all duration-300  ${navbarOpen ? " top-[7px] rotate-45" : " "
+                    className={`relative my-1.5 block h-0.5 w-[30px] bg-black transition-all duration-300 group-focus:bg-primary  ${navbarOpen ? " top-[7px] rotate-45" : " "
                       }`}
                   />
                   <span
-                    className={`relative my-1.5 block h-0.5 w-[30px] bg-black transition-all duration-300 ${navbarOpen ? "opacity-0 " : " "
+                    className={`relative my-1.5 block h-0.5 w-[30px] bg-black transition-all duration-300 group-focus:bg-primary ${navbarOpen ? "opacity-0 " : " "
                       }`}
                   />
                   <span
-                    className={`relative my-1.5 block h-0.5 w-[30px] bg-black transition-all duration-300  ${navbarOpen ? " top-[-8px] -rotate-45" : " "
+                    className={`relative my-1.5 block h-0.5 w-[30px] bg-black transition-all duration-300 group-focus:bg-primary ${navbarOpen ? " top-[-8px] -rotate-45" : " "
                       }`}
                   />
                 </button>
                 <nav
-                  id="navbarCollapse"
-                  className={`navbar absolute right-0 z-30 w-[250px] rounded border-[.5px] border-body-color/50 bg-white px-6 py-4 duration-300 lg:visible lg:static lg:w-auto lg:border-none lg:!bg-transparent lg:p-0 lg:opacity-100 ${navbarOpen
-                    ? "visibility top-full opacity-100"
-                    : "invisible top-[120%] opacity-0"
-                    }`}
+                  className={cn('navbar absolute right-0 z-30 w-fit rounded  bg-white lg:bg-transparent px-6 py-4 duration-300 lg:visible lg:static lg:w-auto lg:p-0 lg:opacity-100', { 'visibility top-full opacity-100 py-2': navbarOpen }, { 'invisible top-[120%] opacity-0': !navbarOpen })}
                 >
-                  <ul className="lg:flex lg:space-x-12 flex items-center">
+                  <ul className={cn('lg:flex lg:space-x-12 flex lg:items-center flex-col space-x-2 items-start lg:flex-row')}>
                     {menuData.map((menuItem, index) => (
                       <li key={index} className="group relative">
                         {menuItem.path ? (

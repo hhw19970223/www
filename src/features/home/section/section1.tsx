@@ -19,11 +19,11 @@ const list = [
 
 export function Section1({  }: { locale: Locale }) {
   return (
-    <section aria-label="introduce" className='h-screen w-screen relative'>
+    <section aria-label="introduce" className='h-[50vh] lg:h-screen w-screen relative'>
       <Carousel autoplay className="[&_li]:!w-15 [&_li_button]:!h-2 [&_li:after]:!h-2 [&_.slick-dots-bottom]:!bottom-[12vh] [&_.slick-dots-bottom]:!justify-start [&_.slick-dots-bottom]:!left-[5vw]">
         {
           list.map((item, index) => (
-            <div key={index} className="h-screen w-screen overflow-hidden [&_video]:object-fill">
+            <div key={index} className="h-[50vh] lg:h-screen w-screen overflow-hidden [&_video]:object-fill">
               <Video
                 poster={item.poster}
                 loop
